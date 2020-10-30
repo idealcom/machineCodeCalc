@@ -16,6 +16,40 @@ var inpVal = input.addEventListener('input', (e) => {
     console.log(inpVal)
 })
 
+// set the classes----------------
+class Octclass {
+    constructor(zero, one, two, three, four, five, six, saven) {
+        this.zero = zero;
+        this.one = one;
+        this.two = two;
+        this.three = three;
+        this.four = four;
+        this.five = five;
+        this.six = six;
+        this.saven = saven;
+    }
+}
+
+class Decclass extends Octclass {
+    constructor(zero, one, two, three, four, five, six, saven, eaight, nine) {
+        super(zero, one, two, three, four, five, six, saven)
+        this.eaight = eaight;
+        this.nine = nine;
+    }
+}
+
+class Hexclass extends Decclass {
+    constructor(zero, one, two, three, four, five, six, saven, eaight, nine, ten, ellaven, twelve, thirteen, fourteen, fifteen) {
+        super(zero, one, two, three, four, five, six, saven, eaight, nine)
+        this.ten = ten;
+        this.ellaven = ellaven;
+        this.twelve = twelve;
+        this.thirteen = thirteen;
+        this.fourteen = fourteen;
+        this.fifteen = fifteen;
+    }
+}
+
 // first column functions----------
 firstCol.addEventListener('click', () => {
     if (fColVal == "binary") {
@@ -47,10 +81,18 @@ firstCol.addEventListener('click', () => {
 })
 
 
+
 input.addEventListener('input', () => {
 
     if (fColVal == "binary" && sColVal == "octal") {
-        result.innerHTML = inpVal / 2
+        binaryToOctal = new Octclass("000", "001", "010", "011", "100", "101", "110", "111")
+        if (inpVal==0) {
+            result.innerHTML = binaryToOctal.zero
+        }else if(inpVal==1){
+            result.innerHTML = binaryToOctal.one
+        }else if(inpVal==2){
+            result.innerHTML = binaryToOctal.two
+        }
     }
     else if (fColVal == "binary" && sColVal == "decimal") {
         result.innerHTML = inpVal * 2
@@ -68,12 +110,7 @@ input.addEventListener('input', () => {
         result.innerHTML = inpVal * 2
     }
     else if (fColVal == "decimal" && sColVal == "binary") {
-
-        for (let val = 0; val < n; val++) {
-            result.innerHTML = inpVal % 2
-            inpVal = inpVal / 2
-        }
-        // result.innerHTML =  finalRes
+        result.innerHTML = inpVal * 2
     }
     else if (fColVal == "decimal" && sColVal == "octal") {
         result.innerHTML = inpVal * 2
